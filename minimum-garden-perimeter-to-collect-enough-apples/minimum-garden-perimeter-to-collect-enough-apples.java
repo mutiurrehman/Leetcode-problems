@@ -1,13 +1,10 @@
 class Solution {
       public long minimumPerimeter(long x) {
-        long l = 1,  r = 100000, m;
-        while (l < r) {
-            m = (l + r) / 2;
-            if (m * m * m * 4 + m * m * 6 + m * 2 >= x)
-                r = m;
-            else
-                l = m + 1;
+         long i=1;
+        for(;x>0;i++){
+            x-=3*i*4; // i*4+2*i*4
+            x-=(((2*i)*(2*i-1))/2-(i*(i+1))/2)*8; // summation using (n*(n+1))/2
         }
-        return l * 8;
+        return (i-1)*8;
     }
 }
