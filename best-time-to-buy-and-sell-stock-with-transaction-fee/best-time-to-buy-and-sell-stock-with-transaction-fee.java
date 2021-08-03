@@ -4,24 +4,9 @@ class Solution {
         int ossp = 0;
         
         for(int i=1;i<prices.length;i++){
-            int nbsp=0,nssp=0;
-            
-            if(ossp-prices[i]>obsp){
-                nbsp=ossp-prices[i];
-            }
-            else{
-                nbsp=obsp;
-            }
-            
-            if(obsp+prices[i]-fee>ossp){
-                nssp=obsp+prices[i]-fee;
-            }
-            else{
-                nssp=ossp;
-            }
-            
-            ossp=nssp;
-            obsp=nbsp;
+            int tossp=ossp;
+            ossp = Math.max(ossp,obsp+prices[i]-fee);
+            obsp=Math.max(obsp,tossp-prices[i]);
         }
         
         return ossp;
