@@ -12,22 +12,22 @@ class Solution {
     public void reorderList(ListNode head) {
         Stack<ListNode> st = new Stack<>();
         
-        ListNode ptr = head;
-        while(ptr!=null){
-            st.push(ptr);
-            ptr=ptr.next;
+        ListNode temp = head;
+        while(temp!=null){
+            st.push(temp);
+            temp=temp.next;
         }
-        ptr=head;
-        int cnt = (st.size()-1)/2;
-        while(cnt-->0){
-            ListNode tmp = ptr.next;
-            ListNode top = st.pop();
-            ptr.next = top;
-            top.next = tmp;
-            ptr=tmp;
+        temp=head;
+        int count = (st.size()-1)/2;
+        while(count-->0){
+            ListNode cur = st.pop();
+            ListNode te = temp.next;
+            temp.next =cur;
+            cur.next = te;
+            temp=te;
         }
-        st.pop().next=null;
 
+        st.pop().next=null;
         
     }
 }
