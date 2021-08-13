@@ -15,31 +15,61 @@
  */
 class Solution {
     public TreeNode addOneRow(TreeNode root, int v, int d) {
-              if(d==1){
-                  TreeNode t= new TreeNode(v);
-                  t.left=root;
-                  return t;
-              }
-        helper(v,root,1,d);
+        if(d==1){
+            TreeNode newRoot = new TreeNode(v);
+            newRoot.left = root;
+            return newRoot;
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int level=1;
+        boolean check = false;
+        while(!q.isEmpty()){
+            int size = q.size();
+          
+            for(int i=0;i<size;i++){
+                TreeNode curr = q.remove();
+                if(curr.left!=null){
+                    TreeNode temp = curr.left;
+                    if(level==d-1){
+                        curr.left = new TreeNode(v);
+                        curr.left.left= temp;
+                        check =true;
+                    }
+                    else{
+                        q.add(curr.left);
+                    }
+                }
+                else{
+                    if(level==d-1){
+                         curr.left = new TreeNode(v);
+                        check =true;
+                    }
+                }
+                
+                if(curr.right!=null){
+                    TreeNode temp = curr.right;
+                    if(level==d-1){
+                        curr.right = new TreeNode(v);
+                        curr.right.right= temp;
+                        check = true;
+                    }
+                    else{
+                        q.add(curr.right);
+                    }
+                }
+                else{
+                    if(level==d-1){
+                         curr.right = new TreeNode(v);
+                        check =true;
+                    }
+                }   
+            }
+            level++;
+            if(check)
+                break;
+        }
+        
         return root;
-        }
-    public void helper(int val,TreeNode root,int depth,int n){
-        if(root==null)
-            return;
-        if(depth==n-1){
-            TreeNode t=root.left;
-            root.left= new TreeNode(val);
-            root.left.left=t;
-            t=root.right;
-            root.right= new TreeNode(val);
-            root.right.right=t;
-        }else{
-            helper(val,root.left,depth+1,n);
-            helper(val,root.right,depth+1,n);
-        }
-        
-        
     }
-    
-    
 }
