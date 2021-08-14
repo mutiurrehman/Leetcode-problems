@@ -1,43 +1,22 @@
 class Solution {
-    public int findCircleNum(int[][] tt) {
-        
-        int n = tt.length;
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for(int i=0;i<n;i++){
-            adj.add(new ArrayList<Integer>());
-        }
-        
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                if(i!=j && tt[i][j]==1){
-                    adj.get(i).add(j);
-                }
-            }
-        }
-        
-        boolean[] vis = new boolean[n];
-      
-        int ans =0;
-        for(int i=0;i<n;i++){
-    
-            if(!vis[i]){
-                 dfs(adj,vis,i);
-                ans++;
-               
-            }
-        }
-        
-        return ans;
-    }
-    
-    public void dfs(ArrayList<ArrayList<Integer>> adj, boolean[] vis, int src){
-    
-        for(int i=0;i<adj.get(src).size();i++){
-            int v = adj.get(src).get(i);
-            if(!vis[v]){
-                vis[v]=true;
-                dfs(adj,vis,v);
+
+    public void dfs(int[][] M, int[] visited, int i) {
+        for (int j = 0; j < M.length; j++) {
+            if (M[i][j] == 1 && visited[j] == 0) {
+                visited[j] = 1;
+                dfs(M, visited, j);
             }
         }
     }
-}
+    public int findCircleNum(int[][] M) {
+        int[] visited = new int[M.length];
+        int count = 0;
+        for (int i = 0; i < M.length; i++) {
+            if (visited[i] == 0) {
+                dfs(M, visited, i);
+                count++;
+            }
+        }
+        return count;
+     }
+    }
