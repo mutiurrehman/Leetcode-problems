@@ -6,28 +6,27 @@ class Solution {
         HashSet<String> set = new HashSet<>(wordList);
         Queue<String> q = new LinkedList<>();
         q.add(b);
-        int depth=0;
+        int level=0;
         while(!q.isEmpty()){
-            depth+=1;
+            level++;
             int size=q.size();
-            
-            while(size-->0){
+            for(int i=0;i<size;i++){
                 String curr = q.remove();
-                char[] ch = curr.toCharArray();
-                
-                for(int i=0;i<ch.length;i++){
-                    char[] temp = new char[ch.length];
-                    for(int j=0;j<ch.length;j++){
-                        temp[j]=ch[j];
+                char[] c1 = curr.toCharArray();
+                for(int j=0;j<c1.length;j++){
+                    char[] temp = new char[c1.length];
+                    for(int k=0;k<temp.length;k++){
+                        temp[k] = c1[k];
                     }
                     
-                    for(char c='a';c<='z';c++){
-                        temp[i]=c;
+                    for(char k='a';k<='z';k++){
+                        temp[j]=k;
+                        
                         if(curr.equals(String.valueOf(temp)))
                             continue;
                         
                         if(e.equals(String.valueOf(temp)))
-                            return depth+1;
+                            return level+1;
                         
                         if(set.contains(String.valueOf(temp))){
                             q.add(String.valueOf(temp));
@@ -36,7 +35,9 @@ class Solution {
                     }
                 }
             }
+            
         }
+        
         return 0;
     }
 }
