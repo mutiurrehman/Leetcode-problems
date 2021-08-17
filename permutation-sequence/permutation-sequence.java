@@ -3,6 +3,8 @@ class Solution {
         
    ArrayList<Integer> list = new ArrayList<>();
      int fact=1;
+        
+        // factorial till A-1.
      for(int i=1;i<A;i++){
          list.add(i);
          fact*=i;
