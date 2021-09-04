@@ -6,7 +6,7 @@ class Solution {
         int res=10;
         int uniqueNumbers = 9;
         int availableDigits = 9;
-        while(n-->1 && availableDigits>0){
+        while(n-->1){
             uniqueNumbers*=availableDigits;
             res+=uniqueNumbers;
             availableDigits--;
