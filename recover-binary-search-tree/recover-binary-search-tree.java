@@ -16,12 +16,12 @@
 class Solution {
     private TreeNode first;
     private TreeNode second;
-    private TreeNode pre;
+    private TreeNode prev;
     public void recoverTree(TreeNode root) {
-        if(root==null) return;
+         if(root==null) return;
         first = null;
         second = null;
-        pre = null;
+        prev = null;
         inorder(root);
         int temp = first.val;
         first.val = second.val;
@@ -29,16 +29,16 @@ class Solution {
     }
     
     private void inorder(TreeNode root){
-        if(root==null) return;
+        if(root == null)
+            return;
         inorder(root.left);
-        
-        if(first==null && (pre==null ||pre.val>=root.val)){
-            first = pre;
+        if(first == null && (prev==null || prev.val>=root.val)){
+            first = prev;
         }
-        if(first!=null && pre.val>=root.val){
+         if(first!=null && prev.val>=root.val)
             second = root;
-        }
-        pre = root;
+        
+        prev = root;
         inorder(root.right);
     }
 }
