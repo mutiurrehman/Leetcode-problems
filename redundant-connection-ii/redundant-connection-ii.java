@@ -54,9 +54,10 @@ class Solution {
         vis[src] = true;
         
         for(int child :  adj.get(src)){
-            if(dfs(adj,vis,rec,child))
-                return true;
-            
+          //  if(!vis[child]){
+                if(dfs(adj,vis,rec,child))
+                    return true;
+            //}
         }
         
         rec[src] = false;
