@@ -16,18 +16,19 @@
 class Solution {
     int ans = 0;
     public int minCameraCover(TreeNode root) {
-        if(count(root)==0)
+    if(count(root)==0)
             ans++;
         return ans;
     }
     
     public int count(TreeNode root){
-        if(root==null){
-            return 2;
-        }
+        if(root==null)
+            return -1;
         
-        int l = count(root.left), r = count(root.right);
-        if(l==0 || r==0){
+        int l = count(root.left);
+        int r = count(root.right);
+        
+        if(l==0||r==0){
             ans++;
             return 1;
         }
