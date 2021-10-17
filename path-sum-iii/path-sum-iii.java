@@ -4,7 +4,7 @@
  *     int val;
  *     TreeNode left;
  *     TreeNode right;
- *     TreeNode() {}
+ *     TreeNode() {     }
  *     TreeNode(int val) { this.val = val; }
  *     TreeNode(int val, TreeNode left, TreeNode right) {
  *         this.val = val;
@@ -13,42 +13,35 @@
  *     }
  * }
  */
-class Solution {
-    public int pathSum(TreeNode root, int targetSum) {
+public class Solution {
+    public int pathSum(TreeNode root, int sum) {
         if(root==null)
             return 0;
         
-        helper(root,targetSum);
+        helper(root,sum);
         return count;
     }
-    
-    public void helper(TreeNode root, int t){
-        if(root==null)
-            return;
-        
-        
-        dfs(root,t,0);
-        helper(root.left, t);
-        helper(root.right,t);
-    }
-    
-    int count=0;
-    public void dfs(TreeNode root, int t, int sum){
-       
 
-        if(root==null){
-            return;
-        }
+    int count=0;
+    
+    public void helper(TreeNode root, int sum){
+        if(root==null)
+        return;
         
+        dfs(root, 0, sum);
+        helper(root.left,sum);
+        helper(root.right,sum);
+        
+    }
+    public void dfs(TreeNode root, int sum, int target){
         if(root==null)
             return;
         
         sum+=root.val;
-        
-        if(sum==t)
+        if(sum==target)
             count++;
         
-        dfs(root.left, t, sum);
-        dfs(root.right, t,sum);
+        dfs(root.left, sum,target);
+        dfs(root.right, sum, target);
     }
 }
