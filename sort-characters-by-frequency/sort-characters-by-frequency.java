@@ -7,25 +7,28 @@ class Solution {
             hm.put(cc,hm.getOrDefault(cc,0)+1);
         }
         
-        List<Map.Entry<Character, Integer>> list =
-               new LinkedList<Map.Entry<Character, Integer> >(hm.entrySet());
- 
-        Collections.sort(list, new Comparator<Map.Entry<Character, Integer> >() {
-            public int compare(Map.Entry<Character, Integer> o1,
-                               Map.Entry<Character, Integer> o2)
-            {
-                return (o1.getValue()).compareTo(o2.getValue());
+        List<Character>[] bucket = new List[s.length()+1];
+        for(char i: hm.keySet()){
+            int val = hm.get(i);
+            if(bucket[val]==null){
+                bucket[val] = new ArrayList<>();
             }
-        });
-         
+            
+            bucket[val].add(i);
+        }
+        
         StringBuilder sb = new StringBuilder();
-        for(int i=list.size()-1;i>=0;i--){
-            int size = list.get(i).getValue();
-            while(size-->0){
-                sb.append(list.get(i).getKey());
+        for(int i=bucket.length-1;i>=0;i--){
+            if (bucket[i] != null){
+                for (char c : bucket[i]){
+                    for (int j = 0; j < i; j++){
+                        sb.append(c);
+                    }
+                }
             }
         }
         
         return sb.toString();
+        
     }
 }
