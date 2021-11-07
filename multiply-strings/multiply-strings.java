@@ -24,39 +24,7 @@ class Solution {
         if (A.equals("0") || B.equals("0"))
             return "0";
 
-        boolean min = false;
-        if (A.charAt(0) == '-' && B.charAt(0) == '-') {
-            A = A.substring(1);
-            B = B.substring(1);
-        } else if (A.charAt(0) == '-') {
-            A = A.substring(1);
-            min = true;
-        } else if (B.charAt(0) == '-') {
-            B = B.substring(1);
-            min = true;
-        }
-
-        String temp1 = "";
-        int l = 0;
-        while (A.charAt(l) == '0')
-            l++;
-
-        for (int k = l; k < A.length(); k++)
-            temp1 += A.charAt(k);
-
-
-        A = temp1;
-
-        String temp2 = "";
-        l = 0;
-        while (B.charAt(l) == '0')
-            l++;
-
-        for (int k = l; k < B.length(); k++)
-            temp2 += B.charAt(k);
-
-        B = temp2;
-
+        
         String prev = "";
 
         for (int i = A.length() - 1; i >= 0; i--) {
@@ -85,10 +53,7 @@ class Solution {
         for (int i = 0; i < prev.length() - 1; i++) {
             ans.append(prev.charAt(i));
         }
-
-
-        if (min)
-            ans.insert(0, "-");
+        
         return ans.toString();
 
     }
