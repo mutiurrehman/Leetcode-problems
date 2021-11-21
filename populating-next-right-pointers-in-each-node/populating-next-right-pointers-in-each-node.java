@@ -1,4 +1,4 @@
-/*
+/**
 // Definition for a Node.
 class Node {
     public int val;
@@ -23,24 +23,25 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-      Node head = root;
+        Node head = root;
         while(head!=null){
             Node dummy = new Node(0);
-            Node temp =dummy;
+            Node dummyItr = dummy;
+            
             while(head!=null){
                 if(head.left!=null){
-                    temp.next=head.left;
-                    temp=temp.next;
+                    dummyItr.next = head.left;
+                    dummyItr = dummyItr.next;
                 }
                 
                 if(head.right!=null){
-                    temp.next=head.right;
-                    temp=temp.next;
+                    dummyItr.next = head.right;
+                    dummyItr = dummyItr.next;
                 }
-                head=head.next;
+                
+                head = head.next;
             }
-            
-            head=dummy.next;
+            head = dummy.next;
         }
         
         return root;
