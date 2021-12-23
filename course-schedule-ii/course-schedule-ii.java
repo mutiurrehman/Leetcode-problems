@@ -23,7 +23,7 @@ class Solution {
         return res;
     }
     
-    
+ 
     List<Integer> ans = new ArrayList<>();
     public boolean dfs(ArrayList<ArrayList<Integer>> adj, boolean[] visited, boolean[] rec, int src){
         if(rec[src])
@@ -38,12 +38,13 @@ class Solution {
             int v = adj.get(src).get(i);
             boolean check = dfs(adj,visited,rec,v);
             if(check){
-                ans.clear();
+               ans.clear();
                return true; 
             }
            
         }
-           ans.add(src);
+        
+        ans.add(src);
         rec[src]=false;
         return false;
     }
