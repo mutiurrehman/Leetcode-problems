@@ -136,18 +136,18 @@ class Solution
         q.add(new TreeNode(A,0));
         while(!q.isEmpty()){
             TreeNode curr = q.poll();
-            if(curr.node !=null  &&curr.node.left!=null){
+            if(curr.node.left!=null){
                 q.add(new TreeNode(curr.node.left,curr.line-1));
             }
             
-            if(curr.node !=null  && curr.node.right!=null){
+            if(curr.node.right!=null){
                 q.add(new TreeNode(curr.node.right,curr.line+1));
             }
             
-            if(curr.node!=null && map.containsKey(curr.line)){
+            if( map.containsKey(curr.line)){
                 map.get(curr.line).add(curr.node.data);
             }
-            else if(curr.node!=null){
+            else{
                 ArrayList<Integer> temp = new ArrayList<>();
                 temp.add(curr.node.data);
                 map.put(curr.line,temp);
