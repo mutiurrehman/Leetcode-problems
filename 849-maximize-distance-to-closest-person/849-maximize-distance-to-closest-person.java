@@ -1,28 +1,15 @@
 class Solution {
     public int maxDistToClosest(int[] seats) {
-        TreeSet<Integer> set = new TreeSet<>();
+        int res = 0, n = seats.length, last = -1;
         
-        for(int i=0;i<seats.length;i++){
-            if(seats[i]==1)
-                set.add(i);
-        }
-        
-        int ans=0;
-        for(int i=0;i<seats.length;i++){
-            if(seats[i]==0){
-                Integer before = set.lower(i);
-                Integer upper = set.higher(i);
-                if(before==null){
-                    before = set.higher(i);
-                }             
-                
-                if(upper == null){
-                    upper = set.lower(i);
-                }
-                ans = Math.max(ans, Math.min(Math.abs(i - before),Math.abs(upper-i)));
+        for (int i = 0; i < n; ++i) {
+            if (seats[i] == 1) {
+                res = last < 0 ? i : Math.max(res, (i - last) / 2);
+                last = i;
             }
         }
         
-        return ans;
+        res = Math.max(res, n - last - 1);
+        return res;
     }
 }
