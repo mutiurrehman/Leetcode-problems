@@ -25,19 +25,38 @@ class GFG
 //User function Template for Java
 
 class Solution
-{
-    Integer[] dp = new Integer[10001];
-    int mod = 1000000007;
+{   public int count=0;
+    public TreeMap<Integer,Integer> map=new TreeMap<>();
+    int mod=1000000007;
     public int nthPoint(int n)
     {
         // Code here
-        if(n==0 || n==1 || n==2)
-            return n;
+        if(n==0)
+        {   count++;
+            return count%mod;
+        }
+        else if(n<0)
+        {
+            return count%mod;
+        } 
+       if(map.containsKey(n))
+       {
+           count=(count%mod+map.get(n)%mod)%mod;
+           if(map.containsKey(n-2))
+           {
+               map.remove(n-2);
+           }
+           return count%mod;
+       }
+        int path1=nthPoint(n-1);
+        int path2=nthPoint(n-2);
+       
+       if(!map.containsKey(n))
+        {  
+            map.put(n,count%mod);
+        }
         
-        if(dp[n]!=null)
-        return dp[n]%mod;
-        
-        dp[n] = (nthPoint(n-1)%mod+nthPoint(n-2)%mod)%mod;
-        return dp[n]%mod;
+ return count%mod;  
+ 
     }
 }
