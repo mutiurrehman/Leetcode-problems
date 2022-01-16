@@ -31,11 +31,8 @@ class Solution
     public int nthPoint(int n)
     {
         // Code here
-        if(n==0 || n==1)
+        if(n==0 || n==1 || n==2)
             return n;
-        
-        if(n==2)
-        return n;
         
         if(dp[n]!=null)
         return dp[n]%mod;
