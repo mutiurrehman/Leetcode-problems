@@ -1,22 +1,16 @@
 class Solution {
     public boolean winnerSquareGame(int n) {
-        return dfs(new HashMap<Integer, Boolean>(), n);
-    }
-    
-    public boolean dfs(HashMap<Integer, Boolean> map, int remain){
-        if(map.containsKey(remain))
-            return map.get(remain);
         
-        int sqrt = (int)Math.sqrt(remain);
-        
-        for(int i=1;i<=sqrt;i++){
-            if(!dfs(map, remain - i*i)){
-                map.put(remain, true);
-                return true;
+        boolean[] dp = new boolean[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            for (int k = 1; k * k <= i; k++) {
+                if (dp[i - k * k] == false) {
+                    dp[i] = true;
+                    break;
+                }
             }
         }
         
-        map.put(remain, false);
-        return false;
+        return dp[n];
     }
 }
