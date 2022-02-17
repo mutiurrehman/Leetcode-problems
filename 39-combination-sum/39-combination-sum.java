@@ -10,7 +10,7 @@ class Solution {
     
     public void helper(List<List<Integer>> ans, List<Integer> temp, int[] arr, int start, int target){
         if(target==0){
-            if(!ans.contains(temp))
+         
                 ans.add(new ArrayList<Integer>(temp));
             
             return;
